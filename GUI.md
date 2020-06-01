@@ -3,13 +3,15 @@
 _______
 
 - [ ] Выбрать библиотеку
-    - [ ] Flask
+    - [x] Flask
     - [ ] ~~Pyramid~~
     - [ ] ~~PyForms~~
     - [ ] ~~Hug~~
     - [ ] ~~Tkinter~~
-    - [ ] PySimpleGUI [MatPlotLib + PSG](https://github.com/SuperMechaDeathChrist/Widgets/blob/master/plt_figure_w_controls.py )
+    - [x] PySimpleGUI [MatPlotLib + PSG](https://github.com/SuperMechaDeathChrist/Widgets/blob/master/plt_figure_w_controls.py )
 
+_Решил сделать и то и то на выбор =)_
+_Ну а то кому то намного больше понравится веб-интерфейс, учитывая что у него будет больше возможностей, а кто то не захочет стартовать у себя `Flask` сервер_
 
 ###Что должно быть:
 
