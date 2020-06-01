@@ -4,11 +4,11 @@ _______
 
 - [ ] Выбрать библиотеку
     - [ ] Flask
-    - [ ] Pyramid
-    - [ ] PyForms
-    - [ ] Hug
-    - [ ] Tkinter
-    - [ ] PySimpleGUI
+    - [ ] ~~Pyramid~~
+    - [ ] ~~PyForms~~
+    - [ ] ~~Hug~~
+    - [ ] ~~Tkinter~~
+    - [ ] PySimpleGUI [MatPlotLib + PSG](https://github.com/SuperMechaDeathChrist/Widgets/blob/master/plt_figure_w_controls.py )
 
 
 ###Что должно быть:
