@@ -1,26 +1,32 @@
-import sqlite3
+import pandas as pd
+import os.path
 
-conn = sqlite3.connect("lttDataBase.db")
-cursor = conn.cursor()
+if not os.path.isfile("pandasBase"):
+    data = pd.DataFrame(columns=['app', 'time', 'date'])
+    data.to_csv("pandasBase", index=False)
+else:
+    data = pd.read_csv("pandasBase")
 
 
-
-def add(app, time, date):
-    cursor.execute("SELECT * FROM apps WHERE app = ? AND date = ?", (app, date))
-    data = cursor.fetchone()
-    if not data:
-        cursor.execute("INSERT INTO apps VALUES (?,?,?)", (app, date, time))
+def add_time(app, time, date):
+    if data[data['date'] == date].empty:
+        data.loc[len(data)] = [app, time, date]
+        return 1
+    t_data = data[data['date'] == date]
+    t_data = t_data[t_data['app'] == app]
+    if t_data.empty:
+        data.loc[len(data)] = [app, time, date]
+        return 1
     else:
-        time += data[1]
-        cursor.execute("UPDATE apps SET time = ? WHERE app = ? AND date = ?", (time, app, date))
-    conn.commit()
+        data.loc[t_data.index] += ['', time, '']
 
 
-def get(app, date):
-    cursor.execute("SELECT * FROM apps WHERE app = ? AND date = ?", (app, date))
-    return cursor.fetchone()
+def get():
+    result = []
+    for i in data.index:
+        result.append([data.iloc[i]['app'], data.iloc[i]['time'], data.iloc[i]['date']])
+    return result
 
 
-def get_all():
-    cursor.execute("SELECT * FROM apps")
-    return cursor.fetchall()
+def save():
+    data.to_csv("pandasBase", index=False)
