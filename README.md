@@ -13,4 +13,4 @@ App that tracks time you use some applications
 - [ ] Do any GUI (Web based gui/ Any GUI Framework)
 - [ ] Tags to group activity
 - [ ] Custom names for applications
-- [ ] Do DB integration 😭
+- [X] Do ~~DB integration 😭~~ Pandas DataFrame and csv saving
