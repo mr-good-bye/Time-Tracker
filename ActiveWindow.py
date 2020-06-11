@@ -7,7 +7,27 @@ import database as db
 
 
 spisok = []
-s_thread = False
+
+
+class stoppingThread:
+    def __init__(self):
+        self._running = True
+
+    def terminate(self):
+        self._running = False
+        print('Terminated')
+
+    def run(self, dt):
+        global spisok
+        while self._running:
+            name = active_window()
+            a = name
+            l_time = 0
+            while a == name and self._running:
+                time.sleep(dt)
+                l_time += dt
+                name = active_window()
+            spisok.append((name, l_time, time.strftime('%d %m %y')))
 
 
 def active_window():
@@ -15,29 +35,14 @@ def active_window():
     return psutil.Process(pid[-1]).name()
 
 
-def add_time(dt):
-    while True:
-        name = active_window()
-        global s_thread
-        a = name
-        l_time = 0
-        while a == name:
-            l_time += dt
-            name = active_window()
-            time.sleep(dt)
-            if s_thread:
-                break
-        spisok.append((name, l_time, time.strftime('%d %m %y')))
-        if s_thread:
-            break
-
-
 u_in = input("Введите период обновления в секундах: ")
 delta = float(u_in)
-thr = Thread(target=add_time, args=(delta,))
+thread = stoppingThread()
+thr = Thread(target=thread.run, args=(delta,))
 thr.start()
 u_in = input("Введите что угодно для завершения:")
-s_thread = True
+thread.terminate()
+thr.join()
 for i in spisok:
     db.add_time(i[0], i[1], i[2])
 db.save()
