@@ -1,3 +1,7 @@
-psutil~=5.7.0
-
-pandas~=1.0.4
+psutil
+pandas
+appJar
+remi
+Pillow
+matplotlib
+setuptools
